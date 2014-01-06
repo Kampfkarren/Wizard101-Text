@@ -130,10 +130,15 @@ public class Main {
 			return;
 		}
 		
+		user.takePips(s.pips());
+		
+		if(Character.checkDispel(user, s.type())){
+			System.out.println("But the dispel made it fizzle!");
+			return;
+		}
+		
 		if(s.effect().effect(user, opponent) == false)
 			System.out.println("But it fizzled!");
-		else
-			user.takePips(s.pips());
 	}
 	
 	public static void debug(String s){

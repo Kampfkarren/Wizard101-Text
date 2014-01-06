@@ -42,6 +42,11 @@ public class Character {
 					damage = damage + trapDamage((int)(entry.getValue()[2]), damage, true);
 					remove.put(remove.size(), entry);
 				}
+			}else if((WardType)(entry.getValue()[0]) == WardType.BLADE){
+				if(s == t){
+					damage = damage + trapDamage((int)(entry.getValue()[2]), damage, true);
+					remove.put(remove.size(), entry);
+				}
 			}
 		}
 		
@@ -55,6 +60,32 @@ public class Character {
 		Main.debug("[DEBUG] Final damage is "+damage);
 		
 		opponent.HP -= damage;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public static boolean checkDispel(Character attacker, SpellType t){
+		HashMap<Integer, Entry> remove = new HashMap<Integer, Entry>();
+		boolean has = false;
+		
+		for(Entry<Integer, Object[]> entry : attacker.wards.entrySet()){
+			SpellType s = (SpellType)entry.getValue()[1];
+			
+			if((WardType)(entry.getValue()[0]) == WardType.DISPEL){
+				if(s == t){
+					has = true;
+					break;
+				}
+			}
+		}
+		
+		for(Entry<Integer, Entry> r : remove.entrySet()){
+			Main.debug("[DEBUG] Removing ward "+r.getKey());
+			Main.debug("[DEBUG] Current length: "+attacker.wards.size());
+			attacker.wards.remove(r.getValue().getKey());
+			Main.debug("[DEBUG] New length: "+attacker.wards.size());
+		}
+		
+		return has;
 	}
 	
 	public void heal(int HP){

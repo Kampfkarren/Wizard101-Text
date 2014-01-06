@@ -22,7 +22,10 @@ public abstract class Spell{
 		new SpellPowerPlay(),
 		new SpellSpectralBlast(),
 		new SpellHydra(),
-		new SpellReshuffle()
+		new SpellReshuffle(),
+		new SpellUnbalance(),
+		new SpellSpiritBlade(),
+		new SpellElementalBlade()
 	};
 	
 	public static boolean accuracy(double d){
