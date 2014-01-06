@@ -47,6 +47,11 @@ public class Character {
 					damage = damage + trapDamage((int)(entry.getValue()[2]), damage, true);
 					remove.put(remove.size(), entry);
 				}
+			}else if((WardType)(entry.getValue()[0]) == WardType.SHIELD){
+				if(s == t){
+					damage = damage + trapDamage((int)(entry.getValue()[2]), damage, true);
+					remove.put(remove.size(), entry);
+				}
 			}
 		}
 		
