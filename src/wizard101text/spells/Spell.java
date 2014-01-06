@@ -16,7 +16,9 @@ public abstract class Spell{
 		new SpellScarab(),
 		new SpellPixie(),
 		new SpellSpiritTrap(),
-		new SpellElementalTrap()
+		new SpellElementalTrap(),
+		new SpellSandstorm(),
+		new SpellLocustStorm()
 	};
 	
 	public static boolean accuracy(double d){

@@ -71,6 +71,15 @@ public class Character {
 	
 	public void addPip(){
 		this.pips++;
+		
+		if(Math.random() <= .4){
+			if(this.getName() == "They")
+				System.out.println("The opponent gained an extra pip!");
+			else
+				System.out.println("You gained an extra pip!");
+			
+			this.pips++;
+		}
 	}
 	
 	public void takePips(int amount){
