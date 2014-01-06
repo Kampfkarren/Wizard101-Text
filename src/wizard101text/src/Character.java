@@ -71,8 +71,12 @@ public class Character {
 	
 	public void addPip(){
 		this.pips++;
+		double greaterThan = .4;
 		
-		if(Math.random() <= .4){
+		if(Main.currentGlobal == Global.POWERPLAY)
+			greaterThan += greaterThan * .35;
+		
+		if(Math.random() <= greaterThan){
 			if(this.getName() == "They")
 				System.out.println("The opponent gained an extra pip!");
 			else

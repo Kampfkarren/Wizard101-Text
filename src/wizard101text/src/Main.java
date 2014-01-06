@@ -10,10 +10,14 @@ import wizard101text.spells.all.SpellSkip;
 
 public class Main {
 	public static String version = "Alpha 1A Copy";
+	public static Global currentGlobal = Global.NORMAL;
 	public static boolean debug = false;
 	
 	private static Random rand = new Random();
 	private static Random rand2;
+	
+	public static Spell[] deck;
+	public static Spell[] opponentDeck;
 	
 	@SuppressWarnings("resource")
 	public static void main(String[] args){
@@ -40,8 +44,7 @@ public class Main {
 		};
 		
 		String deckStr;
-		Spell[] deck;
-		Spell[] opponentDeck = new Spell[]{
+		opponentDeck = new Spell[]{
 			Spell.randomSpell(),
 			Spell.randomSpell(),
 			Spell.randomSpell(),
@@ -87,7 +90,7 @@ public class Main {
 			
 			for(Spell s : deck){
 				val++;
-				System.out.println(val+". "+s.name());
+				System.out.println(val+". "+s.name()+" - "+s.pips()+" pips");
 			}
 			
 			do{
