@@ -25,7 +25,9 @@ public abstract class Spell{
 		new SpellReshuffle(),
 		new SpellUnbalance(),
 		new SpellSpiritBlade(),
-		new SpellElementalBlade()
+		new SpellElementalBlade(),
+		new SpellElementalShield(),
+		new SpellSpiritShield()
 	};
 	
 	public static boolean accuracy(double d){
