@@ -98,7 +98,7 @@ public class Character {
 	public void heal(int HP){
 		Main.debug("Adding "+HP+" health...");
 		if(this.maxHP == this.HP)
-			System.out.println("The spell failed because they already have max HP!");
+			System.out.println("But they couldn't heal because they had max HP!");
 		else{
 			if(this.HP + 400 > this.maxHP)
 				this.HP = maxHP;
