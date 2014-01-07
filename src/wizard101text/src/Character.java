@@ -28,7 +28,7 @@ public class Character {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public static void doDamage(Character attacker, Character opponent, SpellType t, int dmg){
+	public static int doDamage(Character attacker, Character opponent, SpellType t, int dmg){
 		HashMap<Integer, Entry> remove = new HashMap<Integer, Entry>();
 		int damage = dmg;
 		
@@ -65,6 +65,8 @@ public class Character {
 		Main.debug("[DEBUG] Final damage is "+damage);
 		
 		opponent.HP -= damage;
+		
+		return damage;
 	}
 	
 	@SuppressWarnings("rawtypes")

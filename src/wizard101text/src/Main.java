@@ -52,10 +52,14 @@ public class Main {
 			Spell.randomSpell(),
 			new SpellSkip()
 		};
+		/*
 		do{
 			System.out.println("Choose a random deck(1) or make your own(2)?");
 			deckStr = reader.next();
 		}while(!(chkString(deckStr) > 0 && chkString(deckStr) < 3));
+		*/
+		
+		System.out.println("Loading random deck. (Choosing deck not made yet.)");
 		
 		deck = spells;
 		
