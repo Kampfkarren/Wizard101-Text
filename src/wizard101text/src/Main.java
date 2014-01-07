@@ -19,7 +19,6 @@ public class Main {
 	public static Spell[] deck;
 	public static Spell[] opponentDeck;
 	
-	@SuppressWarnings("resource")
 	public static void main(String[] args){
 		System.out.println("Wizard101 Text "+version);
 		System.out.println("Wizard101 is made by Kingsisle Entertainment. This is just a fan creation.");
@@ -34,15 +33,6 @@ public class Main {
 		
 		Scanner reader = new Scanner(System.in);
 		
-		Spell[] spells = new Spell[]{
-			Spell.randomSpell(),
-			Spell.randomSpell(),
-			Spell.randomSpell(),
-			Spell.randomSpell(),
-			Spell.randomSpell(),
-			new SpellSkip()
-		};
-		
 		String deckStr;
 		opponentDeck = new Spell[]{
 			Spell.randomSpell(),
@@ -52,16 +42,40 @@ public class Main {
 			Spell.randomSpell(),
 			new SpellSkip()
 		};
-		/*
+		
 		do{
 			System.out.println("Choose a random deck(1) or make your own(2)?");
 			deckStr = reader.next();
 		}while(!(chkString(deckStr) > 0 && chkString(deckStr) < 3));
-		*/
 		
-		System.out.println("Loading random deck. (Choosing deck not made yet.)");
-		
-		deck = spells;
+		if(chkString(deckStr) == 1){
+			System.out.println("Loading random deck...");
+			
+			Spell[] spells = new Spell[]{
+				Spell.randomSpell(),
+				Spell.randomSpell(),
+				Spell.randomSpell(),
+				Spell.randomSpell(),
+				Spell.randomSpell(),
+				new SpellSkip()
+			};
+			
+			deck = spells;
+		}else if(chkString(deckStr) == 2){
+			int showVal = 0;
+			
+			for(Spell s : Spell.spellClasses){
+				showVal++;
+				System.out.println(showVal+". "+s.name()+" - "+s.pips()+" pips");
+			}
+			
+			Spell[] cards = new Spell[]{getCard(1, reader), getCard(2, reader), getCard(3, reader), getCard(4, reader), getCard(5, reader), new SpellSkip()};
+			
+			deck = cards;
+		}else{
+			System.err.println("Something went wrong with your input: "+deckStr);
+			System.exit(0);
+		}
 		
 		Character user = new Character(deck, rand.nextInt((8000 - 100) + 1) + 100, "You");
 		
@@ -143,6 +157,28 @@ public class Main {
 		
 		if(s.effect().effect(user, opponent) == false)
 			System.out.println("But it fizzled!");
+	}
+	
+	private static Spell getCard(int num, Scanner reader){
+		String deckStr;
+		
+		do{
+			System.out.println("Pick card #"+num+": ");
+			deckStr = reader.next();
+		}while(checkRequestedCard(deckStr) == false);
+		
+		return Spell.spellClasses[Integer.parseInt(deckStr)-1];
+	}
+	
+	private static boolean checkRequestedCard(String str){
+		int num = Integer.parseInt(str);
+		
+		if(chkString(str) != 0 && chkString(str) <= Spell.spellClasses.length){
+			if(Spell.spellClasses[num-1] != null)
+				return true;
+		}
+		
+		return false;
 	}
 	
 	public static void debug(String s){
