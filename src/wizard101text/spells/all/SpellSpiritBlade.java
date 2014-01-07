@@ -21,7 +21,7 @@ public class SpellSpiritBlade extends Spell {
 	}
 	
 	public String name(){
-		return "Elemental Blade";
+		return "Spirit Blade";
 	}
 	
 	public int pips(){

@@ -24,7 +24,7 @@ public class SpellSpiritShield extends Spell {
 	}
 	
 	public String name() {
-		return "Elemental Shield";
+		return "Spirit Shield";
 	}
 	
 	public int pips() {
