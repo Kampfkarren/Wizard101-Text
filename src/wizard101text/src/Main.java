@@ -106,6 +106,8 @@ public class Main {
 			
 			System.out.print("\n");
 			
+			System.out.println("Current Global: "+Global.getName(currentGlobal));
+			
 			for(Spell s : deck){
 				val++;
 				System.out.println(val+". "+s.name()+" - "+s.pips()+" pips");
@@ -148,15 +150,16 @@ public class Main {
 			return;
 		}
 		
-		user.takePips(s.pips());
-		
 		if(Character.checkDispel(user, s.type())){
 			System.out.println("But the dispel made it fizzle!");
+			user.takePips(s.pips());
 			return;
 		}
 		
 		if(s.effect().effect(user, opponent) == false)
 			System.out.println("But it fizzled!");
+		else
+			user.takePips(s.pips());
 	}
 	
 	private static Spell getCard(int num, Scanner reader){

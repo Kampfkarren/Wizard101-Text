@@ -19,10 +19,6 @@ public class Character {
 		this.name = name;
 	}
 	
-	public static void addWard(Character c, SpellType spell, WardType wardType){
-		c.wards.put(c.wards.size()+1, new Object[]{wardType, spell, 40});
-	}
-	
 	public static void addWard(Character c, SpellType spell, WardType wardType, int amount){
 		c.wards.put(c.wards.size()+1, new Object[]{wardType, spell, amount});
 	}
@@ -52,6 +48,9 @@ public class Character {
 					damage = damage + trapDamage((int)(entry.getValue()[2]), damage, true);
 					remove.put(remove.size(), entry);
 				}
+			}else if((WardType)(entry.getValue()[0]) == WardType.NEXTDAMAGE){
+				damage = damage + trapDamage((int)(entry.getValue()[2]), damage, true);
+				remove.put(remove.size(), entry);
 			}
 		}
 		

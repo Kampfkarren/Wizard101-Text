@@ -6,28 +6,26 @@ import wizard101text.spells.SpellType;
 import wizard101text.spells.WardType;
 import wizard101text.src.Character;
 
-public class SpellElementalShield extends Spell {
+public class SpellFeint extends Spell {
 	public SpellInterface effect() {
 		return new SpellInterface(){
 			public boolean effect(Character user, Character opponent) {
-				Character.addWard(user, SpellType.FIRE, WardType.SHIELD, 50);
-				Character.addWard(user, SpellType.ICE, WardType.SHIELD, 50);
-				Character.addWard(user, SpellType.STORM, WardType.SHIELD, 50);
-				
+				Character.addWard(user, SpellType.NONE, WardType.NEXTDAMAGE, 30);
+				Character.addWard(opponent, SpellType.NONE, WardType.NEXTDAMAGE, 70);
 				return true;
 			}
 		};
 	}
 	
 	public SpellType type() {
-		return SpellType.BALANCE;
+		return SpellType.DEATH;
 	}
 	
 	public String name() {
-		return "Elemental Shield";
+		return "Feint";
 	}
 	
 	public int pips() {
-		return 0;
+		return 1;
 	}
 }

@@ -7,7 +7,7 @@ public class SpellDeathTrap extends Spell{
 	public SpellInterface effect(){
 		return new SpellInterface(){
 			public boolean effect(Character user, Character opponent){
-				Character.addWard(opponent, SpellType.DEATH, WardType.TRAP);
+				Character.addWard(opponent, SpellType.DEATH, WardType.TRAP, 40);
 				
 				return true;
 			}

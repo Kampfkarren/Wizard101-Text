@@ -3,31 +3,36 @@ package wizard101text.spells.all;
 import wizard101text.spells.Spell;
 import wizard101text.spells.SpellInterface;
 import wizard101text.spells.SpellType;
-import wizard101text.spells.WardType;
 import wizard101text.src.Character;
 
-public class SpellElementalShield extends Spell {
+public class SpellVampire extends Spell {
 	public SpellInterface effect() {
 		return new SpellInterface(){
 			public boolean effect(Character user, Character opponent) {
-				Character.addWard(user, SpellType.FIRE, WardType.SHIELD, 50);
-				Character.addWard(user, SpellType.ICE, WardType.SHIELD, 50);
-				Character.addWard(user, SpellType.STORM, WardType.SHIELD, 50);
+				boolean acc = accuracy(.85);
 				
-				return true;
+				if(acc){
+					int damage = Character.doDamage(user, opponent, SpellType.DEATH, 350);
+					int heal = (int) damage / 2;
+					
+					user.heal(heal);
+					System.out.println(user.getName()+" healed "+heal);
+				}
+				
+				return acc;
 			}
 		};
 	}
 	
 	public SpellType type() {
-		return SpellType.BALANCE;
+		return SpellType.DEATH;
 	}
 	
 	public String name() {
-		return "Elemental Shield";
+		return "Vampire";
 	}
 	
 	public int pips() {
-		return 0;
+		return 4;
 	}
 }

@@ -6,13 +6,12 @@ import wizard101text.spells.SpellType;
 import wizard101text.spells.WardType;
 import wizard101text.src.Character;
 
-public class SpellElementalShield extends Spell {
+public class SpellDreamShield extends Spell {
 	public SpellInterface effect() {
 		return new SpellInterface(){
 			public boolean effect(Character user, Character opponent) {
-				Character.addWard(user, SpellType.FIRE, WardType.SHIELD, 50);
-				Character.addWard(user, SpellType.ICE, WardType.SHIELD, 50);
-				Character.addWard(user, SpellType.STORM, WardType.SHIELD, 50);
+				Character.addWard(user, SpellType.LIFE, WardType.SHIELD, 70);
+				Character.addWard(user, SpellType.MYTH, WardType.SHIELD, 70);
 				
 				return true;
 			}
@@ -20,11 +19,11 @@ public class SpellElementalShield extends Spell {
 	}
 	
 	public SpellType type() {
-		return SpellType.BALANCE;
+		return SpellType.DEATH;
 	}
 	
 	public String name() {
-		return "Elemental Shield";
+		return "Dream Shield";
 	}
 	
 	public int pips() {

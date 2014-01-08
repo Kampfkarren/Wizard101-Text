@@ -10,7 +10,7 @@ public class SpellUnbalance extends Spell {
 	public SpellInterface effect() {
 		return new SpellInterface(){
 			public boolean effect(Character user, Character opponent) {
-				Character.addWard(opponent, SpellType.BALANCE, WardType.DISPEL);
+				Character.addWard(opponent, SpellType.BALANCE, WardType.DISPEL, 0);
 				
 				return true;
 			}

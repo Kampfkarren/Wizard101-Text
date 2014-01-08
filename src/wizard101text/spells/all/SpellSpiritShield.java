@@ -10,9 +10,9 @@ public class SpellSpiritShield extends Spell {
 	public SpellInterface effect() {
 		return new SpellInterface(){
 			public boolean effect(Character user, Character opponent) {
-				Character.addWard(user, SpellType.DEATH, WardType.SHIELD);
-				Character.addWard(user, SpellType.MYTH, WardType.SHIELD);
-				Character.addWard(user, SpellType.LIFE, WardType.SHIELD);
+				Character.addWard(user, SpellType.DEATH, WardType.SHIELD, 50);
+				Character.addWard(user, SpellType.MYTH, WardType.SHIELD, 50);
+				Character.addWard(user, SpellType.LIFE, WardType.SHIELD, 50);
 				
 				return true;
 			}
