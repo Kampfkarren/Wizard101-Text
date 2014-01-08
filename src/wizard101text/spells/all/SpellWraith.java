@@ -5,14 +5,14 @@ import wizard101text.spells.SpellInterface;
 import wizard101text.spells.SpellType;
 import wizard101text.src.Character;
 
-public class SpellVampire extends Spell {
+public class SpellWraith extends Spell {
 	public SpellInterface effect() {
 		return new SpellInterface(){
 			public boolean effect(Character user, Character opponent) {
 				boolean acc = accuracy(.85);
 				
 				if(acc){
-					int damage = Character.doDamage(user, opponent, SpellType.DEATH, 350);
+					int damage = Character.doDamage(user, opponent, SpellType.DEATH, 500);
 					int heal = (int) damage / 2;
 					
 					user.heal(heal);
@@ -28,10 +28,10 @@ public class SpellVampire extends Spell {
 	}
 	
 	public String name() {
-		return "Vampire";
+		return "Wraith";
 	}
 	
 	public int pips() {
-		return 4;
+		return 6;
 	}
 }
