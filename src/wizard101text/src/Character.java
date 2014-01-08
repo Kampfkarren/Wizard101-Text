@@ -94,21 +94,34 @@ public class Character {
 		return has;
 	}
 	
-	public void heal(int HP){
+	public int heal(int HP){
 		Main.debug("Adding "+HP+" health...");
 		if(this.maxHP == this.HP)
 			System.out.println("But they couldn't heal because they had max HP!");
 		else{
-			if(this.HP + 400 > this.maxHP)
+			int newHP = HP;
+			
+			if(Main.currentGlobal == Global.DOOMANDGLOOM)
+				newHP -= (int)newHP * .65;
+			
+			if(this.HP + newHP > this.maxHP)
 				this.HP = maxHP;
 			else
-				this.HP += HP;
+				this.HP += newHP;
+			
+			System.out.println("They recieved "+newHP+" health!");
+			
+			return newHP;
 		}
+		
+		return 0;
 	}
 	
 	public void addPip(){
 		this.pips++;
 		double greaterThan = .4;
+		
+		//TODO Add proper Power Pips
 		
 		if(Main.currentGlobal == Global.POWERPLAY)
 			greaterThan += greaterThan * .35;

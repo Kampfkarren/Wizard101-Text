@@ -7,7 +7,6 @@ public class SpellPixie extends Spell{
 	public SpellInterface effect(){
 		return new SpellInterface(){
 			public boolean effect(Character user, Character opponent) {
-				System.out.println("...and recieved 400 health!");
 				user.heal(400);
 				return true;
 			}

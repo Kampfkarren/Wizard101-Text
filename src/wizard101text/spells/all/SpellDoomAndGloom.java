@@ -4,21 +4,15 @@ import wizard101text.spells.Spell;
 import wizard101text.spells.SpellInterface;
 import wizard101text.spells.SpellType;
 import wizard101text.src.Character;
+import wizard101text.src.Global;
+import wizard101text.src.Main;
 
-public class SpellGhoul extends Spell {
+public class SpellDoomAndGloom extends Spell {
 	public SpellInterface effect() {
 		return new SpellInterface(){
 			public boolean effect(Character user, Character opponent) {
-				boolean acc = accuracy(.85);
-				
-				if(acc){
-					int damage = Character.doDamage(user, opponent, SpellType.DEATH, 160);
-					int heal = (int) damage / 2;
-					
-					user.heal(heal);
-				}
-				
-				return acc;
+				Main.currentGlobal = Global.DOOMANDGLOOM;
+				return true;
 			}
 		};
 	}
@@ -28,7 +22,7 @@ public class SpellGhoul extends Spell {
 	}
 	
 	public String name() {
-		return "Ghoul";
+		return "Doom and Gloom";
 	}
 	
 	public int pips() {

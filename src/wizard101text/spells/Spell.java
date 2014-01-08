@@ -31,7 +31,10 @@ public abstract class Spell{
 		new SpellGhoul(),
 		new SpellDreamShield(),
 		new SpellBanshee(),
-		new SpellVampire()
+		new SpellVampire(),
+		new SpellSkeletalPirate(),
+		new SpellFeint(),
+		new SpellDoomAndGloom()
 	};
 	
 	public static boolean accuracy(double d){
