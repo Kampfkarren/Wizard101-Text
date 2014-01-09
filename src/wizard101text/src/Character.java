@@ -23,6 +23,10 @@ public class Character {
 		c.wards.put(c.wards.size()+1, new Object[]{wardType, spell, amount});
 	}
 	
+	public static void addConvert(Character c, SpellType convertme, SpellType tome, String name){
+		c.wards.put(c.wards.size()+1, new Object[]{WardType.CONVERT, convertme, tome, name});
+	}
+	
 	@SuppressWarnings("rawtypes")
 	public static int doDamage(Character attacker, Character opponent, SpellType t, int dmg){
 		HashMap<Integer, Entry> remove = new HashMap<Integer, Entry>();
@@ -50,6 +54,11 @@ public class Character {
 				}
 			}else if((WardType)(entry.getValue()[0]) == WardType.NEXTDAMAGE){
 				damage = damage + trapDamage((int)(entry.getValue()[2]), damage, true);
+				remove.put(remove.size(), entry);
+			}else if((WardType)(entry.getValue()[0]) == WardType.CONVERT){
+				SpellType convertme = (SpellType)(entry.getValue()[1]);
+				SpellType tome = (SpellType)(entry.getValue()[2]);
+				System.out.println("The "+entry.getValue()[3]+" converted "+SpellType.getTypeName(convertme)+" to "+SpellType.getTypeName(tome)+"!");
 				remove.put(remove.size(), entry);
 			}
 		}
@@ -108,6 +117,8 @@ public class Character {
 				this.HP = maxHP;
 			else
 				this.HP += newHP;
+			
+			
 			
 			System.out.println("They recieved "+newHP+" health!");
 			
