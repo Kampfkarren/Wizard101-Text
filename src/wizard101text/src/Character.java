@@ -112,6 +112,9 @@ public class Character {
 			
 			if(Main.currentGlobal == Global.DOOMANDGLOOM)
 				newHP -= (int)newHP * .65;
+				
+			if(Main.currentGlobal == Global.SANCTUARY)
+			        newHP += (int)newHP * .25;
 			
 			if(this.HP + newHP > this.maxHP)
 				this.HP = maxHP;
