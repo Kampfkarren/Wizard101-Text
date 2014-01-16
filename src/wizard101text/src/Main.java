@@ -145,6 +145,8 @@ public class Main {
 	}
 	
 	private static void runSpell(Spell s, Character user, Character opponent){
+		user.damageOverTime();
+		
 		if(s.pips() > user.getPips()){
 			System.out.println("But "+user.getName().toLowerCase()+" didn't have enough pips!");
 			return;

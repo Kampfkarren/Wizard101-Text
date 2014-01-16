@@ -27,22 +27,24 @@ public class Character {
 		c.wards.put(c.wards.size()+1, new Object[]{WardType.CONVERT, convertme, tome, name});
 	}
 	
+	public static void addDot(Character c, SpellType spell, int amount, int time){
+		c.wards.put(c.wards.size()+1, new Object[]{WardType.DOT, spell, amount, time});
+	}
+	
 	@SuppressWarnings("rawtypes")
 	public static int doDamage(Character attacker, Character opponent, SpellType t, int dmg){
 		HashMap<Integer, Entry> remove = new HashMap<Integer, Entry>();
+		HashMap<Integer, Entry> removeAtt = new HashMap<Integer, Entry>();
 		int damage = dmg;
 		
 		Main.debug("[DEBUG] Default damage is "+dmg);
 		
 		for(Entry<Integer, Object[]> entry : opponent.wards.entrySet()){
+			if(opponent == null) break;
+			
 			SpellType s = (SpellType)entry.getValue()[1];
 			
 			if((WardType)(entry.getValue()[0]) == WardType.TRAP){
-				if(s == t){
-					damage = damage + trapDamage((int)(entry.getValue()[2]), damage, true);
-					remove.put(remove.size(), entry);
-				}
-			}else if((WardType)(entry.getValue()[0]) == WardType.BLADE){
 				if(s == t){
 					damage = damage + trapDamage((int)(entry.getValue()[2]), damage, true);
 					remove.put(remove.size(), entry);
@@ -63,11 +65,31 @@ public class Character {
 			}
 		}
 		
+		for(Entry<Integer, Object[]> entry : attacker.wards.entrySet()){
+			if(attacker == null) break;
+			
+			SpellType s = (SpellType)entry.getValue()[1];
+			
+			if((WardType)(entry.getValue()[0]) == WardType.BLADE){
+				if(s == t){
+					damage = damage + trapDamage((int)(entry.getValue()[2]), damage, true);
+					removeAtt.put(removeAtt.size(), entry);
+				}
+			}
+		}
+		
 		for(Entry<Integer, Entry> r : remove.entrySet()){
 			Main.debug("[DEBUG] Removing ward "+r.getKey());
 			Main.debug("[DEBUG] Current length: "+opponent.wards.size());
 			opponent.wards.remove(r.getValue().getKey());
 			Main.debug("[DEBUG] New length: "+opponent.wards.size());
+		}
+		
+		for(Entry<Integer, Entry> r : removeAtt.entrySet()){
+			Main.debug("[DEBUG] Removing ward "+r.getKey());
+			Main.debug("[DEBUG] Current length: "+attacker.wards.size());
+			attacker.wards.remove(r.getValue().getKey());
+			Main.debug("[DEBUG] New length: "+attacker.wards.size());
 		}
 		
 		Main.debug("[DEBUG] Final damage is "+damage);
@@ -88,6 +110,7 @@ public class Character {
 			if((WardType)(entry.getValue()[0]) == WardType.DISPEL){
 				if(s == t){
 					has = true;
+					remove.put(remove.size(), entry);
 					break;
 				}
 			}
@@ -101,6 +124,27 @@ public class Character {
 		}
 		
 		return has;
+	}
+	
+	public void damageOverTime(){
+		for(Entry<Integer, Object[]> entry : this.wards.entrySet()){
+			SpellType s = (SpellType)entry.getValue()[1];
+			
+			if((WardType)(entry.getValue()[0]) == WardType.DOT){
+				System.out.println(this.getName()+" took damage from a DoT spell!");
+				Character.doDamage(null, this, s, (int)entry.getValue()[2]);
+				int newTime = (int)entry.getValue()[3] - 1;
+				Object[] newObj = entry.getValue();
+				newObj[3] = newTime;
+				
+				this.wards.put(entry.getKey(), newObj);
+				
+				if(newTime == 0){
+					System.out.println("The DoT spell went away!");
+					this.wards.remove(entry.getKey());
+				}
+			}
+		}
 	}
 	
 	public int heal(int HP){
@@ -120,8 +164,6 @@ public class Character {
 				this.HP = maxHP;
 			else
 				this.HP += newHP;
-			
-			
 			
 			System.out.println("They recieved "+newHP+" health!");
 			
