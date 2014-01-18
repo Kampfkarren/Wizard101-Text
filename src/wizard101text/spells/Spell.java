@@ -38,7 +38,9 @@ public abstract class Spell{
 		new SpellWraith(),
 		new SpellStrangle(),
 		new SpellDeathPrism(),
-		new SpellSanctuary()
+		new SpellSanctuary(),
+		new SpellSunbird(),
+		new SpellKraken()
 	};
 	
 	public static boolean accuracy(double d){
