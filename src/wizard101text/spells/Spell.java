@@ -1,8 +1,12 @@
 package wizard101text.spells;
 
 import wizard101text.spells.all.*;
+import wizard101text.spells.all.cas.*;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public abstract class Spell{
 	public abstract SpellInterface effect();
@@ -38,8 +42,24 @@ public abstract class Spell{
 		new SpellWraith(),
 		new SpellStrangle(),
 		new SpellDeathPrism(),
-		new SpellSanctuary()
+		new SpellSanctuary(),
+		new SpellHealAura()
 	};
+	
+	public static String getCategory(Spell s){
+		return SpellType.getTypeName(s.type())+" Spells";
+	}
+	
+	public static Spell[] getAllInCategory(String s){
+		List<Spell> ret = new ArrayList<Spell>();
+		
+		for(Spell sp : spellClasses){
+			if(getCategory(sp) == s)
+				ret.add(sp);
+		}
+		
+		return ret.toArray(new Spell[0]);
+	}
 	
 	public static boolean accuracy(double d){
 		return Math.random() <= d;

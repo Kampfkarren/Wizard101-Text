@@ -1,7 +1,7 @@
 package wizard101text.src;
 
 public enum Global {
-	NORMAL, POWERPLAY, DOOMANDGLOOM, SANCTUARY;
+	NORMAL, POWERPLAY, DOOMANDGLOOM, SANCTUARY, HEALAURA;
 	
 	public static String getName(Global name){
 		switch(name){
@@ -11,6 +11,8 @@ public enum Global {
 				return "Doom and Gloom";
 			case SANCTUARY:
 				return "Sanctuary";
+			case HEALAURA:
+				return "Heal Aura";
 			default:
 				return "None";
 		}

@@ -64,6 +64,7 @@ public class Main {
 		}else if(chkString(deckStr) == 2){
 			int showVal = 0;
 			
+			System.out.println("- Official Spells -");
 			for(Spell s : Spell.spellClasses){
 				showVal++;
 				System.out.println(showVal+". "+s.name()+" - "+s.pips()+" pips");
@@ -127,6 +128,13 @@ public class Main {
 			System.out.println("They used "+opponentDeck[0].name());
 			runSpell(opponentDeck[0], opponent, user);
 			
+			if(currentGlobal == Global.HEALAURA){
+				System.out.println(user.getName()+" healed "+user.getMaxHP() / 16+" because of the Heal Aura!");
+				user.heal(user.getMaxHP() / 16);
+				System.out.println(opponent.getName()+" healed "+opponent.getMaxHP() / 16+" because of the Heal Aura!");
+				opponent.heal(opponent.getMaxHP() / 16);
+			}
+			
 			user.addPip();
 			opponent.addPip();
 		}
@@ -178,10 +186,8 @@ public class Main {
 	private static boolean checkRequestedCard(String str){
 		int num = Integer.parseInt(str);
 		
-		if(chkString(str) != 0 && chkString(str) <= Spell.spellClasses.length){
-			if(Spell.spellClasses[num-1] != null)
-				return true;
-		}
+		if(Spell.spellClasses[num-1] != null)
+			return true;
 		
 		return false;
 	}
