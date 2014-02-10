@@ -43,7 +43,9 @@ public abstract class Spell{
 		new SpellStrangle(),
 		new SpellDeathPrism(),
 		new SpellSanctuary(),
-		new SpellHealAura()
+		new SpellHealAura(),
+		new SpellSunbird(),
+		new SpellKraken()
 	};
 	
 	public static String getCategory(Spell s){
