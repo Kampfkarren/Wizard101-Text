@@ -20,7 +20,7 @@ public class Main {
 	public static Spell[] opponentDeck;
 	
 	public static void main(String[] args){
-		System.out.println("Wizard101 Text "+version);
+		System.out.println("Wizard101 Text "+ version);
 		System.out.println("Wizard101 is made by Kingsisle Entertainment. This is just a fan creation.");
 		
 		try{
