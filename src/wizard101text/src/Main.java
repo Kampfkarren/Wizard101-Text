@@ -1,9 +1,12 @@
 package wizard101text.src;
 
+import java.awt.BorderLayout;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
+
+import javax.swing.JFrame;
 
 import wizard101text.spells.*;
 import wizard101text.spells.all.SpellSkip;
@@ -20,6 +23,18 @@ public class Main {
 	public static Spell[] opponentDeck;
 	
 	public static void main(String[] args){
+		//Create the default look
+	    JFrame.setDefaultLookAndFeelDecorated(true);
+	    //Create the GUI
+		JFrame frame = new JFrame("Wizard101 Text Simulator");
+		//Terminate program on close
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.getContentPane().add(emptyLabel, BorderLayout.CENTER);
+		frame.pack();
+		frame.setVisible(true);
+		
+		
+		
 		System.out.println("Wizard101 Text "+ version);
 		System.out.println("Wizard101 is made by Kingsisle Entertainment. This is just a fan creation.");
 		

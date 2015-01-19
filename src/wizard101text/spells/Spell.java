@@ -14,6 +14,8 @@ public abstract class Spell{
 	public abstract String name();
 	public abstract int pips();
 	
+	//Register spells
+	
 	public static Spell[] spellClasses = new Spell[]{
 		new SpellDarkFairy(),
 		new SpellDeathTrap(),
