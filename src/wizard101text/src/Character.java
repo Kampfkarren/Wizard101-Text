@@ -10,12 +10,14 @@ public class Character {
 	private int maxHP;
 	private int HP;
 	private int pips;
+	private int maxPips;
 	private String name;
 	
 	public Character(Spell[] spellsval, int HPval, String name){
 		this.maxHP = HPval;
 		this.HP = HPval;
 		this.pips = 1;
+		this.maxPips = 18;
 		this.name = name;
 	}
 	
@@ -174,7 +176,9 @@ public class Character {
 	}
 	
 	public void addPip(){
+		if (getPips() <= this.maxPips - 1) {
 		this.pips++;
+		}
 		double greaterThan = .4;
 		
 		//TODO Add proper Power Pips
